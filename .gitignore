@@ -16,6 +16,14 @@ slides/.astro/
 *.log
 npm-debug.log*
 
+# Playwright MCP captures
+.playwright-mcp/
+*.playwright-mcp/
+
+# Local debug screenshots (keep public/ images intact)
+/anatomy-*.png
+/skill-anatomy-*.png
+
 # Env
 .env
 .env.local
