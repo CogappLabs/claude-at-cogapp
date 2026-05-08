@@ -1,0 +1,26 @@
+---
+title: Mitigations
+section: Limits & mitigations
+bg: green
+docs:
+  - label: Common workflows
+    href: https://code.claude.com/docs/en/common-workflows
+  - label: Best practices
+    href: https://code.claude.com/docs/en/best-practices
+---
+
+## Help Claude help itself
+
+**Add tests.** Unit, feature, e2e. Tests = ground truth Claude can run.
+"Add Pytest cases for this asset, then run them."
+
+**Point at logs.** Claude can read files. Don't paste — link.
+"Tail of `tmp/dagster.log`. Find the failing run, trace cause."
+
+**Tell it to websearch.** Claude won't search by default for stale or unsure facts.
+"Websearch current Astro 6 base-path config."
+
+**Feed it docs.** Linked URL or Context7 fetch.
+"Use Context7: latest Polars `LazyFrame.sink_parquet` API."
+
+**Convert other context to markdown.** Linear story, proposal, brief, slack thread → paste as markdown so Claude reads it cleanly.

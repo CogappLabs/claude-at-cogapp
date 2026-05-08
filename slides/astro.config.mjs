@@ -4,11 +4,13 @@ import mdx from "@astrojs/mdx";
 import tailwindcss from "@tailwindcss/vite";
 import restart from "vite-plugin-restart";
 
+import react from "@astrojs/react";
+
 export default defineConfig({
   site: "https://cogapplabs.github.io",
   base: "/claude-at-cogapp",
   trailingSlash: "ignore",
-  integrations: [mdx()],
+  integrations: [mdx(), react()],
   vite: {
     plugins: [
       tailwindcss(),
@@ -22,8 +24,7 @@ export default defineConfig({
   },
   markdown: {
     shikiConfig: {
-      themes: { light: "github-light", dark: "github-dark" },
-      defaultColor: "light",
+      theme: "github-dark",
       wrap: false,
     },
   },

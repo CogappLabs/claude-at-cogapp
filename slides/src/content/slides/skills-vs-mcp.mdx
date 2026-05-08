@@ -1,0 +1,20 @@
+---
+title: Skills vs MCP
+section: Skills
+bg: green
+docs:
+  - label: Skills
+    href: https://code.claude.com/docs/en/skills
+  - label: MCP
+    href: https://code.claude.com/docs/en/mcp
+---
+
+## Skills vs MCP
+
+- **Skills** = prompt templates, live in `~/.claude/skills/`, no server needed
+- **MCP** = live tool integrations (databases, APIs, browsers), require a running server
+- Skills call MCP tools; MCP tools don't call skills
+
+Rule of thumb: if it's "do this kind of task", use a skill. If it's "fetch live data or run a tool", use MCP.
+
+Skills and MCP complement each other — a skill can orchestrate multiple MCP tools in one workflow.

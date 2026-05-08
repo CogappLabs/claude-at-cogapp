@@ -12,10 +12,11 @@ docs:
 | :---- | :---- | :---- |
 | Linear | Devs | Tickets, projects, docs |
 | Slack | All | Search, post, summarise |
-| Atlassian | PMs | Jira, Confluence |
-| Context7 | All | Live library docs |
+| Atlassian | Producers | Jira, Confluence |
 | claude-in-chrome | Frontend | Browser test, console logs |
-| Posthog | Product | Analytics, flags |
-| Cloudflare | DevOps | Traffic, WAF, DNS |
-| GA / GSC | SEO | Analytics, search |
-| Neon | DBs | Postgres branches |
+| Playwright | Frontend | E2E test automation |
+
+**Browser tools — pick one:**
+
+- **Playwright** — much faster (headless, parallel). Use for repeatable test flows.
+- **claude-in-chrome** — drives *your real Chrome* with your sessions/cookies. Use when you need authenticated state, extensions, or real DevTools console.

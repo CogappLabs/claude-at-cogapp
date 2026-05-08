@@ -10,7 +10,8 @@ docs:
 
 ## Permission controls
 
-- Claude asks before running shell commands or edits
-- Pre-approve safe ones (`npm test`, `git status`) via `/permissions`
-- **Never approve commands you don't understand**
-- Be cautious with `curl`, `wget`, network requests
+- Pre-approve only what you'd run yourself without hesitation
+- Deny anything that touches secrets, network, or destructive ops
+- Never approve commands you don't understand — ask Claude to explain first
+
+See the `/permissions` slide for config syntax.

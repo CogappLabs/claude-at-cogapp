@@ -1,0 +1,62 @@
+---
+title: Skill size & references
+section: Authoring
+docs:
+  - label: Skills (Anthropic docs)
+    href: https://code.claude.com/docs/en/skills
+---
+
+import TwoCol from "../../components/TwoCol.astro";
+
+## Skill size & references
+
+Anthropic's limits:
+
+- **`SKILL.md` ≤ 500 lines** (recommended)
+- `description` + `when_to_use` capped at **1,536 chars** in listing
+- Once invoked, full body stays in context whole session
+- Compact keeps first **5k tokens** per skill (25k combined budget)
+
+Big skill? Split. Reference supporting files from SKILL.md.
+
+<TwoCol>
+<div>
+
+**Small skill (no refs)**
+
+```text
+lint-check/
+└── SKILL.md         ← ~50 lines
+```
+
+`lint-check` is just rules + commands. Fits easily.
+
+</div>
+<div>
+
+**Bigger skill (refs)**
+
+`collection-flow-audit`: check this repo follows our pipeline conventions, report violations.
+
+```text
+collection-flow-audit/
+├── SKILL.md         ← entrypoint + checks
+├── conventions.md   ← Polars/Pandera/Dagster rules
+├── examples.md      ← good vs bad patterns
+└── scripts/
+    └── scan.py      ← AST scan, runs on demand
+```
+
+In `SKILL.md`:
+
+```md
+Run `${CLAUDE_SKILL_DIR}/scripts/scan.py .`
+For each violation, look up rule in [conventions.md](conventions.md).
+Show good pattern from [examples.md](examples.md).
+Output: file:line, rule broken, suggested fix.
+```
+
+Claude reads SKILL.md, runs scan, follows links only for violations found. Big reference, small context cost.
+
+</div>
+</TwoCol>

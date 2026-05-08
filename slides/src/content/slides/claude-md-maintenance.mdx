@@ -1,0 +1,33 @@
+---
+title: Keep CLAUDE.md fresh
+section: Config
+bg: pink
+docs:
+  - label: Memory (CLAUDE.md)
+    href: https://code.claude.com/docs/en/memory
+---
+
+## Keep `CLAUDE.md` fresh
+
+`CLAUDE.md` = README for Claude. Stop repeating yourself.
+
+- Tired of saying "use uv not pip"? Put it in CLAUDE.md.
+- Got a preferred pattern (component shape, naming, error style)? Put it in.
+- Caught Claude breaking a convention? Add the rule, don't just fix the diff.
+
+Stale README = humans get confused. Stale CLAUDE.md = Claude gets confused.
+
+**Update when:**
+
+- Stack changes (new lib, new tool, version bump)
+- Conventions shift (rename, restructure, new pattern)
+- A rule keeps not being followed (re-state it, more clearly)
+- You catch yourself correcting Claude on the same thing twice
+
+**Make Claude do it.**
+
+> "Read the latest commits. Update CLAUDE.md to reflect what's changed: new deps, removed scripts, renamed dirs."
+
+> "I just told you not to start dev servers. Add that to CLAUDE.md so I don't have to repeat myself."
+
+Treat it like any other doc: review on PR, prune dead rules, keep concise.

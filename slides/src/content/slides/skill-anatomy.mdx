@@ -6,20 +6,49 @@ docs:
     href: https://code.claude.com/docs/en/skills
 ---
 
+import Terminal from "../../components/Terminal.astro";
+import TwoCol from "../../components/TwoCol.astro";
+
+export const skillRunOutput = `> check this repo against the collection-flow commandments
+
+[skill triggered: collection-flow]
+Reading SKILL.md...
+Scanning src/...
+
+✗ src/client/assets/visitors.py:14
+  ElementTree.parse(path) loads whole XML into memory.
+  Rule 2: Never materialise into memory.
+  Fix: switch to iterparse (streaming).
+
+✓ Polars lazy API used throughout
+✓ Pandera validation at stage boundaries`;
+
 ## Anatomy of a skill
 
-```markdown
+<TwoCol>
+<div>
+
+```md
 ---
 name: collection-flow
 description: >
-  Use when working with Dagster assets, Polars
-  DataFrames, or Pandera schemas.
+  Use when working with Dagster
+  assets, Polars DataFrames,
+  or Pandera schemas.
 ---
 
 ## Commandments
 1. Always use Polars lazy API
-2. One asset per function
-3. Validate schemas at stage boundaries
+2. Never materialise into memory
+3. Validate at stage boundaries
 ```
 
-`SKILL.md` + frontmatter + markdown. That's it.
+`SKILL.md` + frontmatter + markdown.
+
+</div>
+<div>
+
+<Terminal title="claude — collection-flow" text={skillRunOutput} />
+
+</div>
+</TwoCol>

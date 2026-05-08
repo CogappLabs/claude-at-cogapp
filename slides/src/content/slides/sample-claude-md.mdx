@@ -6,21 +6,53 @@ docs:
     href: https://code.claude.com/docs/en/memory
 ---
 
+import TwoCol from "../../components/TwoCol.astro";
+
 ## Sample CLAUDE.md
 
-```markdown
-# Package Management
-- NEVER manually edit package.json
-- ALWAYS use npm install / npm uninstall
+<TwoCol>
+<div>
 
-# Code Execution
-- NEVER start dev servers: I'll run them
-- Write test scripts to scripts/
+**Global** (`~/.claude/CLAUDE.md`)
 
-# Git
-- NEVER add Co-Authored-By or AI attribution
-
-# Stack
+```md
+# Tooling
 - Python: uv, ruff, ty, 3.13+
-- Frontend: TypeScript strict, Tailwind v4, Biome v2
+- JS/TS: Biome v2, never ESLint
+- DDEV projects: ddev npm, ddev composer
+
+# Workflow
+- Never start dev servers, I run them
+- Lefthook pre-commit on all projects
+
+# Style
+- Caveman-lite: drop filler, hedging
+- No em-dashes
 ```
+
+</div>
+<div>
+
+**Project** (`<repo>/CLAUDE.md`)
+
+```md
+# What this is
+collection-flow ingest pipeline.
+Polars + Pandera + Dagster.
+
+# Run
+uv run dg dev
+
+# Conventions
+- Assets in src/client_name/assets/
+- Schemas in src/client_name/schemas/
+- Tests mirror src/ tree
+
+# Don't touch
+- legacy/ (old pipeline, read-only)
+```
+
+</div>
+</TwoCol>
+
+Global = your habits. Project = this repo's facts.

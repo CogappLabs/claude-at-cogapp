@@ -8,21 +8,14 @@ docs:
     href: https://code.claude.com/docs/en/mcp
 ---
 
-## Skills
+## Skills in practice
 
-Reusable prompt templates. Trigger automatically or via `/skill-name`.
+Built-in (bundled): `/debug`, `/review`, `/test`, `/simplify`, `/loop`.
 
-Examples: `/debug`, `/review`, `/test`.
+Cogapp marketplace: [cogapplabs/claude-plugins](https://github.com/cogapplabs/claude-plugins)
 
-Cogapp skills: [cogapplabs/claude-plugins](https://github.com/cogapplabs/claude-plugins)
+- `/collection-flow` — Polars/Pandera/Dagster conventions
+- `/craft-cms` — Twig, Yii, Matrix fields, ddev queries
+- `/accessibility-pro`, `/writing-techniques`, `/wireframe-designer`
 
-### Skills vs MCP
-
-Anthropic's direction: skills over MCP where possible.
-
-- **Skill** = markdown file with instructions Claude reads on demand. Encodes a *workflow* ("when user says X, do Y, then Z"). Cheap, versioned in repo, no server.
-- **MCP** = running server exposing tools/resources over a protocol. *Plumbing*: live API access, DB queries, browser control, auth-gated data.
-
-Rule of thumb: "how we do this task" → skill. Skills can shell out to CLIs (`gh`, `ddev`, `duckdb`, internal CLIs) for live data. Reach for MCP when no CLI exists, or transport/auth/streaming makes a server worth it.
-
-Skills can also call MCP tools. Pair them: MCP exposes capability, skill shapes workflow around it.
+Browse the marketplace, install what fits your stack.

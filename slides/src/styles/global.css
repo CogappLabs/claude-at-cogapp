@@ -117,6 +117,20 @@
     background: var(--color-pink);
     color: var(--color-slate);
   }
+  :focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /* Slide content typography (applied via .prose-slide on slide content wrapper) */
@@ -173,7 +187,6 @@
   }
   & pre.astro-code {
     background: var(--color-slate) !important;
-    color: var(--color-cream);
     padding: 1rem 1.5rem;
     border-radius: 6px;
     font-size: clamp(0.85rem, 1.05vw, 1rem);
@@ -205,4 +218,43 @@
     outline-offset: 2px;
     border-radius: 2px;
   }
+}
+
+/* Laptop screens: keep slide on one viewport, no scroll */
+@media (max-height: 900px) {
+  .prose-slide h1 { font-size: clamp(2.4rem, 6vh, 4rem); margin: 0 0 1.25rem; }
+  .prose-slide h2 { font-size: clamp(1.9rem, 4.5vh, 2.8rem); margin: 0 0 1rem; }
+  .prose-slide h3 { font-size: clamp(1.35rem, 2.8vh, 1.7rem); margin: 0 0 0.6rem; }
+  .prose-slide p { font-size: clamp(1.1rem, 2vh, 1.3rem); margin: 0 0 0.6rem; }
+  .prose-slide ul:not(.bullets), .prose-slide ol {
+    font-size: clamp(1.1rem, 2vh, 1.3rem);
+    margin: 0 0 0.9rem;
+  }
+  .prose-slide li { margin-bottom: 0.3rem; }
+  .prose-slide pre.astro-code {
+    font-size: clamp(0.9rem, 1.5vh, 1.05rem);
+    padding: 0.7rem 1rem;
+    margin: 0 0 0.8rem;
+  }
+  .prose-slide blockquote {
+    font-size: clamp(1.2rem, 2.5vh, 1.6rem);
+    padding-left: 1.2rem;
+    margin: 0 0 0.8rem;
+  }
+  .prose-slide table { font-size: clamp(0.95rem, 1.6vh, 1.1rem); margin: 0 0 0.8rem; }
+  .prose-slide th, .prose-slide td { padding: 0.35rem 0.7rem; }
+
+  /* Anchor centered slides nearer top on short screens */
+  main[data-slide] {
+    justify-content: flex-start;
+    padding-top: 6vh;
+  }
+  main[data-slide][style*="grid-template-rows"] {
+    grid-template-rows: 6vh auto 1fr !important;
+  }
+}
+
+/* Slide pages allow scrolling when content overflows */
+main[data-slide] {
+  overflow-y: auto;
 }

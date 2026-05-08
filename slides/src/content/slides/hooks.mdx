@@ -1,27 +1,62 @@
 ---
-title: Hooks
+title: Status line
 section: Authoring
 docs:
+  - label: Statusline
+    href: https://code.claude.com/docs/en/statusline
   - label: Hooks
     href: https://code.claude.com/docs/en/hooks
-  - label: Hooks guide
-    href: https://code.claude.com/docs/en/hooks-guide
 ---
 
-## Hooks
+import TwoCol from "../../components/TwoCol.astro";
+import Terminal from "../../components/Terminal.astro";
 
-Shell commands fired on events. Configured in `settings.json`.
+export const statusOut = `Opus 4.7 (1M context) 🦄 Ctx: 38% 5h: 62% (2h14m) $1.247 main*`;
 
-Example: Stop hook auto-logs to `~/git/worklog/YYYY-MM-DD.md`.
+## Status line + hooks
+
+Bottom-of-terminal info bar. Shell command, runs each turn. JSON in via stdin, plain text out.
+
+<TwoCol>
+<div>
+
+`~/.claude/settings.json`:
 
 ```json
 {
-  "hooks": {
-    "Stop": [{
-      "command": "~/.claude/hooks/worklog.sh"
-    }]
+  "statusLine": {
+    "type": "command",
+    "command": "/bin/bash ~/.claude/statusline.sh"
   }
 }
 ```
 
-Other events: `SessionStart`, `UserPromptSubmit`, pre/post tool calls.
+`statusline.sh` (excerpt):
+
+```bash
+input=$(cat)
+model=$(echo "$input" | jq -r '.model.display_name')
+ctx=$(echo "$input" | jq -r '.context_window.used_percentage')
+cost_calc_from_tokens_and_model_pricing
+git_branch=$(git symbolic-ref --short HEAD)
+
+printf "%s 🦄 Ctx: %d%% \$%.3f %s" \
+  "$model" "$ctx" "$cost" "$git_branch"
+```
+
+</div>
+<div>
+
+<Terminal title="status line" text={statusOut} />
+
+**What it shows**
+
+- Model + context use %
+- 5-hour rate-limit % + reset countdown
+- Session cost ($)
+- Git branch + dirty marker
+
+Hooks run on other events too: `Stop` (worklog), `SessionStart`, `UserPromptSubmit`, pre/post tool calls.
+
+</div>
+</TwoCol>

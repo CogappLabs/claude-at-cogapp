@@ -1,0 +1,78 @@
+---
+title: Sample skill — lint-check
+section: Authoring
+bg: green
+docs:
+  - label: Skills
+    href: https://code.claude.com/docs/en/skills
+---
+
+import TwoCol from "../../components/TwoCol.astro";
+import Terminal from "../../components/Terminal.astro";
+
+export const lintRun = `> run lint
+
+[skill triggered: lint-check]
+Detected: Python (pyproject.toml + uv.lock)
+
+$ uv run ruff check . --fix
+  Fixed 3 issues, 0 remaining.
+
+$ uv run ruff format .
+  Reformatted 2 files.
+
+$ uv run ty check
+  ✓ No type errors.
+
+All checks passed.`;
+
+## Sample skill: `lint-check`
+
+<TwoCol>
+<div>
+
+````md
+---
+name: lint-check
+description: >
+  Auto-detect project type and run
+  linting, formatting, type checking.
+  Triggers on "run linters", "type
+  check", "format code".
+user_invocable: true
+---
+
+## Detection
+- Python: `pyproject.toml` → ruff + ty
+- Node: `package.json` → biome + tsc
+
+## Python
+```bash
+uv run ruff check . --fix
+uv run ruff format .
+uv run ty check
+```
+
+## Node
+```bash
+npx biome check --write .
+npm run typecheck --if-present
+```
+
+Report: project type, commands, failures.
+````
+
+</div>
+<div>
+
+<Terminal title="claude — lint" text={lintRun} />
+
+**How it triggers**
+
+- User types `/lint-check` (manual), OR
+- Claude matches `description` to user's request ("run linters")
+- Frontmatter `user_invocable: true` = shows in `/` menu
+- Body is the playbook Claude follows
+
+</div>
+</TwoCol>

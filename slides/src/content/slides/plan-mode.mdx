@@ -1,6 +1,6 @@
 ---
 title: Plan mode
-section: Skills
+section: Tips
 docs:
   - label: ultraplan
     href: https://code.claude.com/docs/en/ultraplan
@@ -12,8 +12,19 @@ Big task? Plan first, code second.
 
 - `/plan` skill: structured implementation plan
 - `Plan` agent: software architect, no edits
-- `ExitPlanMode`: approve plan, start work
+- Approve the plan via the UI prompt to let Claude start coding
 
 Use for: new features, multi-file refactors, anything > 30 mins of work.
 
 Skip for: bug fixes, one-line changes, exploration.
+
+### When Claude gets stuck
+
+Stuck in a loop? Same fix keeps failing? Reset:
+
+1. `/clear` — drop poisoned context
+2. `/plan` — make Claude lay out approach before retrying
+3. Read plan, push back on flawed assumptions
+4. Approve → execute
+
+Plan-first beats "try again harder" every time.
