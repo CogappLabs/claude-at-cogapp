@@ -92,3 +92,5 @@ Don't start the dev server from Claude. User runs it.
 - Keep slides terse: title + ~5 bullets max. Talk fills the rest.
 - No em-dashes in slide copy, README, or CLAUDE.md. Use full stop, comma, colon, or hyphen instead.
 - Don't introduce React for new slides unless needed. Static Astro components preferred (no hydration cost, no width swing).
+- **No client refs.** Repo is public. Use generic placeholders (`client_name`, `example.com`) instead of real client/project names (NTS, TMS, TRS, etc). Sweep new content for client names before commit.
+- `<meta name="robots" content="noindex, nofollow">` is set on every page; `slides/public/robots.txt` denies all crawlers. Public repo, but search engines skip it.
