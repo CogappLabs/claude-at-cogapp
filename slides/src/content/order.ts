@@ -28,6 +28,7 @@ export const slideOrder = [
   "skill-anatomy",
   "skill-example",
   "skill-references",
+  "build-your-own-cli",
   "three-skills",
   "hooks",
   "mcp-section",

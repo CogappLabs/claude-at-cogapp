@@ -46,3 +46,10 @@ Live URL: <https://cogapplabs.github.io/claude-at-cogapp/>
 If repo name changes or custom domain added: update `site` + `base` in `astro.config.mjs` and the font URL prefix in `global.css`.
 
 GitHub repo settings, Pages, Source: GitHub Actions (one-time).
+
+## Privacy
+
+- `<meta name="robots" content="noindex, nofollow">` on every page
+- `slides/public/robots.txt` denies all crawlers
+- Public repo, but search engines skip it
+- Don't commit client/private data: `client_name` placeholder used in samples; sweep before adding new prompts/screenshots

@@ -1,0 +1,63 @@
+---
+title: Build your own CLI
+section: Authoring
+bg: blue
+docs:
+  - label: Skills
+    href: https://code.claude.com/docs/en/skills
+---
+
+import TwoCol from "../../components/TwoCol.astro";
+import Terminal from "../../components/Terminal.astro";
+
+export const cfRun = `$ cf logs http --status 503 --last 1h
+2026-05-08 14:12:03  503  cogapp.com/api/foo  ip=1.2.3.4
+2026-05-08 14:14:51  503  cogapp.com/api/foo  ip=1.2.3.4
+2026-05-08 14:18:22  503  cogapp.com/api/bar  ip=5.6.7.8
+... 47 more`;
+
+## Build your own CLI, then skill it
+
+A skill can shell out. So if a vendor has no MCP, build a small CLI yourself, then wrap it in a skill.
+
+<TwoCol>
+<div>
+
+**Example: `cf` (Cloudflare read-only CLI)**
+
+```text
+cf zones list
+cf logs http --status 503 --last 1h
+cf analytics top-paths --zone example.com
+cf security events --action block
+cf dns records list --zone example.com
+```
+
+Built with Bun + bunli. Auth token in `~/.config/cf-cli/token.json`. Read-only by design (no destructive endpoints exposed).
+
+</div>
+<div>
+
+<Terminal title="claude" text={cfRun} />
+
+**Skill wrapping it:**
+
+```md
+---
+name: cloudflare-cli
+description: >
+  Query Cloudflare analytics, logs, security
+  events, DNS via the cf CLI. Use for traffic
+  questions, bot checks, WAF events.
+---
+
+Use `cf` (at ~/git/cloudflare-cli).
+- `cf logs http` for HTTP requests
+- `cf security events` for WAF
+- `cf analytics top-paths` for traffic
+```
+
+</div>
+</TwoCol>
+
+CLI does the talking to the API. Skill teaches Claude when + how to call it. Cheap to add new vendors.
