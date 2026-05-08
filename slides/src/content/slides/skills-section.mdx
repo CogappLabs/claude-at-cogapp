@@ -13,5 +13,5 @@ Reusable workflows Claude loads on demand.
 
 - A folder + `SKILL.md` file. That's it.
 - Frontmatter says **when** to use it; body says **how**.
-- Loaded only when relevant → cheap. CLAUDE.md loads always → not cheap.
+- Auto-matched when relevant; full body loads on invocation, then stays in context for the session. CLAUDE.md loads always → not cheap.
 - Trigger: `/skill-name` (you), or auto-match (Claude reads description).

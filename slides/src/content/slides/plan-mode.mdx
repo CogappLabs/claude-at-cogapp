@@ -10,9 +10,10 @@ docs:
 
 Big task? Plan first, code second.
 
-- `/plan` skill: structured implementation plan
-- `Plan` agent: software architect, no edits
-- Approve the plan via the UI prompt to let Claude start coding
+- `/plan` — **native Claude Code command** (built-in, not a skill). Makes Claude write a structured plan before touching files.
+- **Plan agent** (ultraplan) — separate architect sub-agent. Software-architect persona, no edits, just planning. Invoked via the ultraplan skill or the Agents UI.
+
+Approve the plan via the UI prompt to let Claude start coding.
 
 Use for: new features, multi-file refactors, anything > 30 mins of work.
 
