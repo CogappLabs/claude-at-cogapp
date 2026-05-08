@@ -16,9 +16,11 @@ export const cfRun = `$ cf logs http --status 503 --last 1h
 2026-05-08 14:18:22  503  cogapp.com/api/bar  ip=5.6.7.8
 ... 47 more`;
 
-## Build your own CLI, then skill it
+## Build your own CLI
 
-A skill can shell out. So if a vendor has no MCP, build a small CLI yourself, then wrap it in a skill.
+If a vendor has no MCP and no skill, build a small CLI yourself. Claude can shell out to anything on PATH.
+
+CLI alone is enough. Wrap it in a skill if you want auto-trigger from natural language; otherwise just tell Claude "use `cf` to check…".
 
 <TwoCol>
 <div>
@@ -60,4 +62,4 @@ Use `cf` (at ~/git/cloudflare-cli).
 </div>
 </TwoCol>
 
-CLI does the talking to the API. Skill teaches Claude when + how to call it. Cheap to add new vendors.
+CLI does the talking to the API. Skill (optional) teaches Claude when + how to call it. Cheap to add new vendors without writing an MCP server.
