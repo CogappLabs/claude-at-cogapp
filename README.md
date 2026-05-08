@@ -4,8 +4,8 @@ Talk + slide deck on using Claude Code at Cogapp.
 
 ## Layout
 
-- `slides/` — Astro deck (MDX slides, served at `localhost:4321`)
-- `docs/claude-code-at-cogapp-developers-guide.md` — long-form developer guide
+- `slides/`: Astro deck (MDX slides, served at `localhost:4321`)
+- `docs/claude-code-at-cogapp-developers-guide.md`: long-form developer guide
 
 ## Run the deck
 
@@ -37,7 +37,7 @@ Astro 6, MDX, Tailwind v4, Node 22+.
 
 ## Deployment
 
-Pushed to `main` → built + published to GitHub Pages via `.github/workflows/deploy.yml` (`withastro/action@v3`).
+Push to `main`: built + published to GitHub Pages via `.github/workflows/deploy.yml` (`withastro/action@v3`).
 
 Live URL: <https://cogapplabs.github.io/claude-at-cogapp/>
 
@@ -45,4 +45,4 @@ Live URL: <https://cogapplabs.github.io/claude-at-cogapp/>
 
 If repo name changes or custom domain added: update `site` + `base` in `astro.config.mjs` and the font URL prefix in `global.css`.
 
-GitHub repo settings → Pages → Source: GitHub Actions (one-time).
+GitHub repo settings, Pages, Source: GitHub Actions (one-time).

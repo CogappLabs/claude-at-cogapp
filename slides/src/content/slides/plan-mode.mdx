@@ -10,8 +10,8 @@ docs:
 
 Big task? Plan first, code second.
 
-- `/plan` — **native Claude Code command** (built-in, not a skill). Makes Claude write a structured plan before touching files.
-- **Plan agent** (ultraplan) — separate architect sub-agent. Software-architect persona, no edits, just planning. Invoked via the ultraplan skill or the Agents UI.
+- `/plan`: **native Claude Code command** (built-in, not a skill). Makes Claude write a structured plan before touching files.
+- **Plan agent** (ultraplan): separate architect sub-agent. Software-architect persona, no edits, just planning. Invoked via the ultraplan skill or the Agents UI.
 
 Approve the plan via the UI prompt to let Claude start coding.
 
@@ -23,8 +23,8 @@ Skip for: bug fixes, one-line changes, exploration.
 
 Stuck in a loop? Same fix keeps failing? Reset:
 
-1. `/clear` — drop poisoned context
-2. `/plan` — make Claude lay out approach before retrying
+1. `/clear`: drop poisoned context
+2. `/plan`: make Claude lay out approach before retrying
 3. Read plan, push back on flawed assumptions
 4. Approve → execute
 

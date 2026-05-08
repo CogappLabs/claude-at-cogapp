@@ -4,8 +4,8 @@ Talk + slide deck on using Claude Code at Cogapp.
 
 ## Repo layout
 
-- `slides/` — Astro deck (source of truth for talk content)
-- `docs/claude-code-at-cogapp-developers-guide.md` — long-form companion guide
+- `slides/`: Astro deck (source of truth for talk content)
+- `docs/claude-code-at-cogapp-developers-guide.md`: long-form companion guide
 
 ## Slide system
 
@@ -42,7 +42,7 @@ Move slug lines in `order.ts`. URLs stay stable (slug-based).
 
 ## Components available in MDX
 
-`Slide`, `Bullets`, `TwoCol`, `Footnote`, `Title` — see `slides/src/components/`.
+`Slide`, `Bullets`, `TwoCol`, `Footnote`, `Title`. See `slides/src/components/`.
 
 ## Dev
 
