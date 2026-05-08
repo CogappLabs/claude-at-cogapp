@@ -1,0 +1,33 @@
+---
+title: /permissions deep dive
+section: Config
+docs:
+  - label: Permissions
+    href: https://code.claude.com/docs/en/permissions
+  - label: Permission modes
+    href: https://code.claude.com/docs/en/permission-modes
+---
+
+## `/permissions` deep dive
+
+Pre-approve safe, deny dangerous, leave the rest interactive.
+
+```json
+{
+  "permissions": {
+    "deny": [
+      "Read(.env)",
+      "Read(.env.*)",
+      "Read(credentials.json)",
+      "Read(~/.ssh/**)",
+      "Bash(rm -rf:*)"
+    ],
+    "allow": [
+      "Bash(npm test)",
+      "Bash(npm run lint)",
+      "Bash(git status)",
+      "Bash(git diff:*)"
+    ]
+  }
+}
+```

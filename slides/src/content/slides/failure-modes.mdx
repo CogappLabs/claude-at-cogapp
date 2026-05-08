@@ -1,0 +1,18 @@
+---
+title: Real failure modes
+section: Limits
+bg: pink
+docs:
+  - label: Troubleshooting
+    href: https://code.claude.com/docs/en/troubleshooting
+---
+
+## Real failure modes
+
+- **Hallucinated API**: invents a method that doesn't exist
+- **Outdated version**: uses 2-year-old syntax for current lib
+- **Bypass "fix"**: disables failing test instead of fixing bug
+- **Phantom file ref**: "as defined in `utils/foo.ts`" → no such file
+- **Confident migration SQL**: looks right, breaks prod
+
+Always verify before running, committing, deploying.

@@ -1,0 +1,28 @@
+---
+title: What skills are
+section: Skills
+docs:
+  - label: Skills
+    href: https://code.claude.com/docs/en/skills
+  - label: MCP
+    href: https://code.claude.com/docs/en/mcp
+---
+
+## Skills
+
+Reusable prompt templates. Trigger automatically or via `/skill-name`.
+
+Examples: `/debug`, `/review`, `/test`.
+
+Cogapp skills: [cogapplabs/claude-plugins](https://github.com/cogapplabs/claude-plugins)
+
+### Skills vs MCP
+
+Anthropic's direction: skills over MCP where possible.
+
+- **Skill** = markdown file with instructions Claude reads on demand. Encodes a *workflow* ("when user says X, do Y, then Z"). Cheap, versioned in repo, no server.
+- **MCP** = running server exposing tools/resources over a protocol. *Plumbing*: live API access, DB queries, browser control, auth-gated data.
+
+Rule of thumb: "how we do this task" → skill. Skills can shell out to CLIs (`gh`, `ddev`, `duckdb`, internal CLIs) for live data. Reach for MCP when no CLI exists, or transport/auth/streaming makes a server worth it.
+
+Skills can also call MCP tools. Pair them: MCP exposes capability, skill shapes workflow around it.

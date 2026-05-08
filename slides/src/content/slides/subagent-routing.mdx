@@ -1,0 +1,20 @@
+---
+title: Subagent routing
+section: Models
+bg: green
+docs:
+  - label: Subagents
+    href: https://code.claude.com/docs/en/sub-agents
+---
+
+## Subagent routing
+
+Don't let Opus do Haiku's job.
+
+| Task | Agent | Why |
+| :---- | :---- | :---- |
+| File lookup, grep | Explore (Haiku) | Cheap, fast |
+| Multi-file analysis | Sonnet | Right balance |
+| Architecture, security review | Opus | Reasoning depth |
+
+Tell Claude to pass `model: "haiku"` explicitly when spawning subagents (not inherit parent).

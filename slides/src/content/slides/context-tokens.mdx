@@ -1,0 +1,24 @@
+---
+title: Context & tokens
+section: Context
+bg: blue
+docs:
+  - label: Context window
+    href: https://code.claude.com/docs/en/context-window
+---
+
+## Context & tokens
+
+- **Context window** = how much Claude sees at once
+- **Tokens** ≈ 4 characters each
+- Older parts compress as it fills
+- `/clear` between unrelated tasks. Fresh context = better answers.
+
+### Why `/clear` helps
+
+- Stale facts stop getting cited (old files, old wrong turns)
+- Earlier framing stops biasing later answers
+- Tool/file state assumptions reset
+- Lower token cost: no replay of old turns
+
+Same model, cleaner signal, sharper answers.

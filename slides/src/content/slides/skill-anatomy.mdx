@@ -1,0 +1,25 @@
+---
+title: Anatomy of a skill
+section: Authoring
+docs:
+  - label: Skills
+    href: https://code.claude.com/docs/en/skills
+---
+
+## Anatomy of a skill
+
+```markdown
+---
+name: collection-flow
+description: >
+  Use when working with Dagster assets, Polars
+  DataFrames, or Pandera schemas.
+---
+
+## Commandments
+1. Always use Polars lazy API
+2. One asset per function
+3. Validate schemas at stage boundaries
+```
+
+`SKILL.md` + frontmatter + markdown. That's it.

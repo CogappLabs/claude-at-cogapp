@@ -1,0 +1,27 @@
+---
+title: Hooks
+section: Authoring
+docs:
+  - label: Hooks
+    href: https://code.claude.com/docs/en/hooks
+  - label: Hooks guide
+    href: https://code.claude.com/docs/en/hooks-guide
+---
+
+## Hooks
+
+Shell commands fired on events. Configured in `settings.json`.
+
+Example: Stop hook auto-logs to `~/git/worklog/YYYY-MM-DD.md`.
+
+```json
+{
+  "hooks": {
+    "Stop": [{
+      "command": "~/.claude/hooks/worklog.sh"
+    }]
+  }
+}
+```
+
+Other events: `SessionStart`, `UserPromptSubmit`, pre/post tool calls.

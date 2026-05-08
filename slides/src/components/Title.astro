@@ -1,0 +1,15 @@
+---
+interface Props {
+  level?: 1 | 2;
+  kicker?: string;
+}
+const { level = 2, kicker } = Astro.props;
+const Tag = level === 1 ? "h1" : "h2";
+---
+
+{kicker && (
+  <span class="block font-sans font-medium text-sm uppercase tracking-[0.08em] opacity-60 mb-2">
+    {kicker}
+  </span>
+)}
+<Tag class="font-serif leading-[1.05] tracking-tight m-0 mb-8"><slot /></Tag>

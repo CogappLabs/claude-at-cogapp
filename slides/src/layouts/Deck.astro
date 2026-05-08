@@ -1,0 +1,169 @@
+---
+import "../styles/tokens.css";
+import { ClientRouter } from "astro:transitions";
+
+interface Props {
+  title?: string;
+}
+const { title = "Claude Code at Cogapp" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <ClientRouter />
+  </head>
+  <body>
+    <div class="progress" data-progress aria-hidden="true">
+      <div class="progress__bar" data-progress-bar></div>
+    </div>
+
+    <a class="brand" href="/" aria-label="Cogapp">Cogapp</a>
+
+    <main id="deck"><slot /></main>
+
+    <nav class="deck-nav" aria-label="Slide position">
+      <span data-counter>1</span> / <span data-total>1</span>
+    </nav>
+
+    <style>
+      main#deck {
+        scroll-snap-type: y mandatory;
+        height: 100vh;
+        overflow-y: scroll;
+      }
+
+      .progress {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: rgba(40, 40, 40, 0.08);
+        z-index: 100;
+      }
+      .progress__bar {
+        height: 100%;
+        width: 0%;
+        background: var(--slate);
+        transition: width var(--transition-fast);
+      }
+
+      .brand {
+        position: fixed;
+        top: var(--space-4);
+        left: var(--space-6);
+        font-family: var(--font-serif);
+        font-size: 1.25rem;
+        font-style: italic;
+        color: currentColor;
+        text-decoration: none;
+        z-index: 50;
+        opacity: 0.7;
+        mix-blend-mode: multiply;
+      }
+      .brand::after {
+        content: ".";
+      }
+
+      .deck-nav {
+        position: fixed;
+        bottom: var(--space-4);
+        right: var(--space-6);
+        font-family: Civil, ui-monospace, monospace;
+        font-feature-settings: "tnum", "zero";
+        font-size: 0.85rem;
+        color: var(--grey);
+        background: rgba(255, 255, 255, 0.6);
+        padding: var(--space-1) var(--space-2);
+        border-radius: 4px;
+        backdrop-filter: blur(6px);
+        z-index: 50;
+      }
+    </style>
+
+    <script is:inline>
+      (() => {
+        const init = () => {
+          const deck = document.getElementById("deck");
+          if (!deck) return;
+          const slides = Array.from(document.querySelectorAll("[data-slide]"));
+          if (!slides.length) return;
+          const counter = document.querySelector("[data-counter]");
+          const total = document.querySelector("[data-total]");
+          const bar = document.querySelector("[data-progress-bar]");
+          if (total) total.textContent = String(slides.length);
+
+          const goto = (i) => {
+            const idx = Math.max(0, Math.min(slides.length - 1, i));
+            slides[idx].scrollIntoView({ behavior: "smooth" });
+            const url = new URL(window.location.href);
+            url.searchParams.set("slide", String(idx + 1));
+            history.replaceState({}, "", url);
+          };
+
+          const currentIndex = () => {
+            const top = deck.scrollTop;
+            const h = window.innerHeight;
+            return Math.round(top / h);
+          };
+
+          const update = () => {
+            const i = currentIndex();
+            if (counter) counter.textContent = String(i + 1);
+            if (bar) {
+              const pct = slides.length > 1 ? (i / (slides.length - 1)) * 100 : 100;
+              bar.style.width = pct + "%";
+            }
+            const url = new URL(window.location.href);
+            url.searchParams.set("slide", String(i + 1));
+            history.replaceState({}, "", url);
+          };
+
+          document.addEventListener("keydown", (e) => {
+            if (
+              e.key === "ArrowRight" ||
+              e.key === "ArrowDown" ||
+              e.key === " " ||
+              e.key === "PageDown"
+            ) {
+              e.preventDefault();
+              goto(currentIndex() + 1);
+            } else if (
+              e.key === "ArrowLeft" ||
+              e.key === "ArrowUp" ||
+              e.key === "PageUp"
+            ) {
+              e.preventDefault();
+              goto(currentIndex() - 1);
+            } else if (e.key === "Home") {
+              goto(0);
+            } else if (e.key === "End") {
+              goto(slides.length - 1);
+            }
+          });
+
+          deck.addEventListener("scroll", update, { passive: true });
+
+          // Deep link: ?slide=N
+          const params = new URLSearchParams(window.location.search);
+          const target = parseInt(params.get("slide") || "1", 10);
+          if (!Number.isNaN(target) && target > 1) {
+            requestAnimationFrame(() => {
+              slides[Math.min(slides.length, target) - 1]?.scrollIntoView();
+              update();
+            });
+          } else {
+            update();
+          }
+        };
+
+        document.addEventListener("astro:page-load", init);
+        if (document.readyState !== "loading") init();
+      })();
+    </script>
+  </body>
+</html>

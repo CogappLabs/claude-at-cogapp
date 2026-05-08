@@ -1,0 +1,214 @@
+---
+import "../styles/global.css";
+import { ClientRouter } from "astro:transitions";
+
+interface Props {
+  bg?: "cream" | "slate" | "pink" | "green" | "purple" | "blue" | "white";
+  align?: "start" | "center" | "end";
+  title: string;
+  order: number;
+  total: number;
+  prev?: string;
+  next?: string;
+  first: string;
+  last: string;
+  section?: string;
+  docs?: string | Array<string | { label: string; href: string }>;
+}
+
+type DocLink = { label: string; href: string };
+function normaliseDocs(
+  d: Props["docs"],
+): DocLink[] {
+  if (!d) return [];
+  const arr = Array.isArray(d) ? d : [d];
+  return arr.map((item) => {
+    if (typeof item === "string") {
+      let label = item;
+      try {
+        const u = new URL(item);
+        label = u.hostname.replace(/^www\./, "") + u.pathname.replace(/\/$/, "");
+      } catch {}
+      return { label, href: item };
+    }
+    return item;
+  });
+}
+const {
+  bg = "cream",
+  align = "center",
+  title,
+  order,
+  total,
+  prev,
+  next,
+  first,
+  last,
+  section,
+  docs,
+} = Astro.props;
+const docLinks = normaliseDocs(docs);
+
+const bgClass: Record<string, string> = {
+  cream: "bg-cream text-slate",
+  slate: "bg-slate text-cream",
+  pink: "bg-pink text-slate",
+  green: "bg-green text-slate",
+  purple: "bg-purple text-slate",
+  blue: "bg-blue text-slate",
+  white: "bg-white text-slate",
+};
+
+const alignClass: Record<string, string> = {
+  start: "justify-start",
+  center: "justify-center",
+  end: "justify-end",
+};
+
+const progressPct = total > 1 ? ((order - 1) / (total - 1)) * 100 : 100;
+
+const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
+const homeHref = `${BASE}/`;
+const slidePath = (slug: string) => `${BASE}/slide/${slug}`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title} · Claude Code at Cogapp</title>
+    <link rel="icon" type="image/svg+xml" href={`${BASE}/favicon.svg`} />
+    <link rel="alternate icon" href={`${BASE}/favicon.ico`} />
+    <link rel="preload" href={`${BASE}/fonts/civil/CivilPremium-Regular2.woff2`} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={`${BASE}/fonts/civil/CivilPremium-Medium2.woff2`} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={`${BASE}/fonts/untitled-serif/untitled-serif-regular.woff2`} as="font" type="font/woff2" crossorigin />
+    <ClientRouter />
+  </head>
+  <body class={`${bgClass[bg]} m-0 min-h-screen transition-colors duration-300`}>
+    <div class="fixed top-0 inset-x-0 h-[8px] bg-black/10 z-100">
+      <div
+        class="h-full bg-current opacity-60 transition-[width] duration-500"
+        style={`width:${progressPct}%`}
+      ></div>
+    </div>
+
+    <a
+      href={homeHref}
+      aria-label="Cogapp"
+      class="fixed top-4 left-6 font-serif italic text-xl opacity-70 z-50 no-underline text-current after:content-['.']"
+    >
+      Cogapp
+    </a>
+
+    {align === "center" ? (
+      <main
+        class="min-h-screen px-12 max-w-[1100px] w-full mx-auto flex flex-col justify-center items-start"
+        transition:animate="fade"
+      >
+        {section && (
+          <span class="block font-sans text-sm font-medium uppercase tracking-[0.1em] opacity-50 mb-4">
+            {section}
+          </span>
+        )}
+        <div class="prose-slide w-full">
+          <slot />
+          {docLinks.length > 0 && (
+            <aside class="mt-12 pt-6 border-t border-current/20 text-xs">
+              <h3 class="font-sans text-[0.65rem] uppercase tracking-[0.1em] opacity-60 mb-2 mt-0">References</h3>
+              <ul class="list-none p-0 m-0 space-y-1">
+                {docLinks.map((d) => (
+                  <li>
+                    <a href={d.href} target="_blank" rel="noopener" class="font-mono text-current opacity-80 hover:opacity-100">{d.label}</a>
+                  </li>
+                ))}
+              </ul>
+            </aside>
+          )}
+        </div>
+      </main>
+    ) : (
+      <main
+        class="min-h-screen px-12 max-w-[1100px] w-full mx-auto grid"
+        style="grid-template-rows:18vh auto 1fr"
+        transition:animate="fade"
+      >
+        <div></div>
+        <header>
+          {section && (
+            <span class="block font-sans text-sm font-medium uppercase tracking-[0.1em] opacity-50 mb-4">
+              {section}
+            </span>
+          )}
+        </header>
+        <div class="prose-slide self-start">
+          <slot />
+          {docLinks.length > 0 && (
+            <aside class="mt-12 pt-6 border-t border-current/20 text-xs">
+              <h3 class="font-sans text-[0.65rem] uppercase tracking-[0.1em] opacity-60 mb-2 mt-0">References</h3>
+              <ul class="list-none p-0 m-0 space-y-1">
+                {docLinks.map((d) => (
+                  <li>
+                    <a href={d.href} target="_blank" rel="noopener" class="font-mono text-current opacity-80 hover:opacity-100">{d.label}</a>
+                  </li>
+                ))}
+              </ul>
+            </aside>
+          )}
+        </div>
+      </main>
+    )}
+
+    <nav
+      aria-label="Slide navigation"
+      class="fixed bottom-4 right-6 flex gap-2 items-center font-mono text-[0.95rem] bg-white/60 backdrop-blur-sm px-2 py-1 rounded z-50"
+    >
+      {prev !== undefined && (
+        <a href={slidePath(prev)} aria-label="Previous slide" rel="prev" class="px-1 no-underline text-slate">←</a>
+      )}
+      <span class="opacity-70 px-1 text-slate">
+        <span data-counter>{order}</span> / <span>{total}</span>
+      </span>
+      {next !== undefined && (
+        <a href={slidePath(next)} aria-label="Next slide" rel="next" class="px-1 no-underline text-slate">→</a>
+      )}
+    </nav>
+
+    <script is:inline define:vars={{ prev, next, first, last, BASE }}>
+      (() => {
+        const slideUrl = (slug) => `${BASE}/slide/${slug}`;
+        const init = () => {
+          document.addEventListener("keydown", onKey);
+        };
+        const onKey = (e) => {
+          if (
+            e.key === "ArrowRight" ||
+            e.key === "ArrowDown" ||
+            e.key === " " ||
+            e.key === "PageDown"
+          ) {
+            if (next !== undefined) {
+              e.preventDefault();
+              window.location.href = slideUrl(next);
+            }
+          } else if (
+            e.key === "ArrowLeft" ||
+            e.key === "ArrowUp" ||
+            e.key === "PageUp"
+          ) {
+            if (prev !== undefined) {
+              e.preventDefault();
+              window.location.href = slideUrl(prev);
+            }
+          } else if (e.key === "Home") {
+            window.location.href = slideUrl(first);
+          } else if (e.key === "End") {
+            window.location.href = slideUrl(last);
+          }
+        };
+        document.addEventListener("astro:page-load", init);
+        if (document.readyState !== "loading") init();
+      })();
+    </script>
+  </body>
+</html>

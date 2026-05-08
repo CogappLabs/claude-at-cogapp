@@ -1,0 +1,25 @@
+---
+title: /clear vs /compact
+section: Context
+docs:
+  - label: Slash commands
+    href: https://code.claude.com/docs/en/commands
+  - label: CLI reference
+    href: https://code.claude.com/docs/en/cli-reference
+---
+
+## `/clear` vs `/compact` vs continue
+
+- **Continue**: task related, context fits. No action.
+- **`/compact`**: task related, context tight. Summarises older messages, keeps thread.
+- **`/clear`**: switching tasks. Wipes history. Files stay.
+
+Mental model: `/compact` = ZIP, `/clear` = new tab.
+
+### How "continue" works
+
+- `claude --continue` (or `-c`) resumes most recent session in current dir
+- `claude --resume` picks from list of past sessions
+- Full transcript replays into context: messages, tool calls, file reads
+- Same working dir = same session pool. Different dir = different pool.
+- Long sessions hit context pressure fast. Use `/clear` once task done, not `--continue` forever.

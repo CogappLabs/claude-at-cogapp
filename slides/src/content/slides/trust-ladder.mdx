@@ -1,0 +1,22 @@
+---
+title: Trust ladder
+section: Limits
+bg: green
+docs:
+  - label: Permission modes
+    href: https://code.claude.com/docs/en/permission-modes
+  - label: Security
+    href: https://code.claude.com/docs/en/security
+---
+
+## Trust ladder
+
+How far can output go without your eyes?
+
+```
+Generated → Lint pass → Test pass → Local run → PR → Merge → Deploy
+   ↑                                  ↑
+   review here for risky              review here for routine
+```
+
+Generated code always reviewed before merge. Risky changes (migrations, auth, deletes) reviewed before running locally.
