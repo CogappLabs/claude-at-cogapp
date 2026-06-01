@@ -9,8 +9,15 @@ docs:
 
 ## Three skills you could write today
 
-1. **worklog-summary**: turn today's notes into a tidy daily summary
-2. **deploy-checklist**: pre-flight checks before a release (lint, tests, env vars, smoke URLs)
-3. **twig-lookup**: find component usage across `templates/`
+1. **worklog-summary** (`"summarise my day"`): roll today's notes into a tidy daily summary
+2. **deploy-checklist** (`"pre-flight"`): lint, tests, env vars, smoke URLs before a release
+3. **template-lookup** (`"find component usage"`): grep usages across `templates/`
+
+Each is one `SKILL.md`: frontmatter `name` + `description` (the trigger), body = the steps. Drop in `~/.claude/skills/<name>/`:
+
+```shell
+mkdir -p ~/.claude/skills/deploy-checklist
+$EDITOR ~/.claude/skills/deploy-checklist/SKILL.md
+```
 
 Pattern: repeated instruction → skill. Codify once, reuse forever.

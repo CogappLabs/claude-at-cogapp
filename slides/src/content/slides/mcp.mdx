@@ -9,9 +9,16 @@ docs:
 
 ## MCP (Model Context Protocol)
 
-Plugins for Claude. Examples:
+Plugins for Claude. Connect external tools: databases, Linear, Slack.
 
-- Database MCPs: query DBs directly
-- Linear, Slack: interact with external tools
+Add the Linear server (one line):
 
-Configured per-project or globally.
+```shell
+claude mcp add --transport http linear https://mcp.linear.com/mcp
+```
+
+Then ask in plain English:
+
+> Find my in-progress Linear tickets and summarise what's left.
+
+Claude calls the server, reads live tickets. Configured per-project or globally.
