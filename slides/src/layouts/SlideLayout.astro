@@ -135,9 +135,12 @@ const slidePath = (slug: string) => `${BASE}/slide/${slug}`;
     <a
       href={homeHref}
       aria-label="Cogapp"
-      class="fixed top-4 left-6 font-serif italic text-xl opacity-70 z-50 no-underline text-current after:content-['.']"
+      class="fixed top-5 left-6 opacity-70 z-50 no-underline text-current hover:opacity-100 transition-opacity"
     >
-      Cogapp
+      <span
+        class="block w-[95px] h-[20px] bg-current"
+        style={`-webkit-mask:url(${BASE}/cogapp-logo.svg) left center/contain no-repeat;mask:url(${BASE}/cogapp-logo.svg) left center/contain no-repeat;`}
+      ></span>
     </a>
 
     {align === "center" ? (
@@ -174,7 +177,7 @@ const slidePath = (slug: string) => `${BASE}/slide/${slug}`;
       <main
         data-slide
         class="min-h-screen px-12 max-w-[1100px] w-full mx-auto grid"
-        style="grid-template-rows:18vh auto 1fr"
+        style="grid-template-rows:10vh auto 1fr"
         transition:animate={slideAnim}
       >
         <h1 class="sr-only">{title}</h1>

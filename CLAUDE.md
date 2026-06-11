@@ -53,6 +53,7 @@ Move slug lines in `order.ts`. URLs stay stable (slug-based).
 - `TwoCol.astro`: side-by-side grid (`ratio="1-1"|"2-1"|"1-2"`). Cells use `minmax(0,1fr)` + `overflow-hidden` to stay rigid regardless of content.
 - `Terminal.astro`: macOS-style terminal frame. Static text only. Props: `title`, `text`, optional `class`.
 - `Terminal.tsx`: animated React variant (TypeAnimation). Avoid for layout-sensitive slides; mount swing causes width spikes.
+- `Quote.astro`: pull quote with optional `cite` attribution line.
 - `Bullets.astro`, `Footnote.astro`, `Title.astro`, `Slide.astro`: see `slides/src/components/`.
 
 ## Accessibility
