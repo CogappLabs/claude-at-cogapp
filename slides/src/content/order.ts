@@ -42,6 +42,8 @@ export const slideOrder = [
   "failure-modes",
   "trust-ladder",
   "mitigations",
+  "working-against-1",
+  "working-against-2",
   "security-section",
   "protect-secrets",
   "permission-controls",

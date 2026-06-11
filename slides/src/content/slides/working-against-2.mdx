@@ -1,0 +1,17 @@
+---
+title: Working against Claude Code (2/2)
+section: Limits & mitigations
+bg: pink
+docs:
+  - label: Best practices
+    href: https://code.claude.com/docs/en/best-practices
+---
+
+## Anti-patterns: vague in, vague out
+
+- **Being vague and hoping**: "fix the bug" with no reproduction steps, no error, no file. Ten seconds on what's broken, where, and how you noticed changes the output more than any prompt trick.
+- **Over-specifying the how**: dictating exact steps for something it could solve better given the _what_ and the constraints. Say what "done" looks like, let it find the path.
+- **Ignoring the planning step**: jumping to "write it" on a non-trivial change, instead of having it lay out an approach where course-correction is cheap.
+- **One giant prompt for a sprawling task**: a wall of ten loosely-related asks. Break it up, or let it plan. Sequential focused tasks beat one mega-instruction.
+- **Pasting file contents into chat**: Claude can read the repo. Copy-pasting code (or screenshots of it) strips the file path/line context it would otherwise have.
+- **Re-explaining context every message**: put durable facts in `CLAUDE.md` once. It loads every session.

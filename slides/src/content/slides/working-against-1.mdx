@@ -1,0 +1,16 @@
+---
+title: Working against Claude Code (1/2)
+section: Limits & mitigations
+bg: pink
+docs:
+  - label: Best practices
+    href: https://code.claude.com/docs/en/best-practices
+---
+
+## Anti-patterns: working against Claude Code
+
+- **Babysitting one line at a time**: asking for a single edit, reviewing, asking for the next. Describe the whole goal, let it plan and execute. It can take a task, not just autocomplete.
+- **Treating it like Google**: asking how to do something so you can do it by hand, when it has the tools to just do it and show you the diff.
+- **Refusing to let it run things**: running tests/build/linter yourself and pasting failures back, instead of letting it run, read output, and iterate in one loop.
+- **Manual repetitive edits it should script**: "rename in this file too... and this one..." across 30 files, when it can sweep the lot in one pass.
+- **Accepting the first answer silently**: not pushing back. "Why this over X?" / "what are the failure modes?" beats nodding along.

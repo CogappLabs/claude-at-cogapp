@@ -12,8 +12,9 @@ docs:
 ## Skills vs MCP
 
 - **Skills** = prompt templates, live in `~/.claude/skills/`, no server needed
-- **MCP** = live tool integrations (databases, APIs, browsers), require a running server
+- **MCP** = live tool integrations (databases, APIs, browsers), require a running server (local on your own machine, or remote)
 - Skills call MCP tools; MCP tools don't call skills
+- MCP tends to cost more context: tool results can be verbose, and many servers add up. (Tool search now defers most definitions until needed, so it's better than it was.) A skill or CLI is often leaner when either would do.
 
 Rule of thumb: if it's "do this kind of task", use a skill. If it's "fetch live data or run a tool", use MCP.
 

@@ -1,5 +1,5 @@
 ---
-title: Anti-patterns
+title: Don't do this
 section: Security
 bg: pink
 docs:
@@ -7,11 +7,11 @@ docs:
     href: https://code.claude.com/docs/en/best-practices
 ---
 
-## Anti-patterns
+## Don't do this
 
-- Pasting full `.env` contents to "share context"
-- Approving `Bash(*)` blanket
-- Trusting generated migration SQL without review
-- Letting it `git push --force` unsupervised
-- Skipping pre-commit hooks because Claude said `--no-verify`
-- Auto-approving every "delete this file" prompt
+- Pasting `.env` contents to "share context" (Claude _will_ try to access this file)
+- Blanket-approving wildcards: `Bash(git *)`, `Bash(npm *)`, etc
+- Reflexively approving prompts
+- Adding MCP servers or skills without vetting them
+- Routinely bypassing safety gates: `--no-verify`
+- Pointing it at production credentials when dev/staging would do

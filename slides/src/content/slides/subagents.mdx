@@ -11,15 +11,11 @@ docs:
 
 ## Subagents & parallel work
 
-Main agent fans out:
+Main agent spawns subagents that work in their own context, report back a result.
 
 Built-in:
-- **Explore (Haiku)**: file lookup, grep, single-file Q&A
-- **general-purpose**: open-ended research
+- **Explore**: file lookup, grep, single-file Q&A
+- **general-purpose**: open-ended research, multi-step tasks
 
-From `feature-dev` plugin:
-- **code-reviewer**: second opinion on diff
-- **code-explorer**: trace execution paths
-- **code-architect**: design new features
-
-Tell Claude to fan out independent work in parallel. Faster, cheaper.
+- Run independent work in parallel: faster, and each subagent's context stays out of the main thread.
+- Define your own subagents for recurring jobs (review, debug).

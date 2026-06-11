@@ -10,13 +10,14 @@ docs:
 
 | MCP | Who uses | What for |
 | :---- | :---- | :---- |
-| Linear | Devs | Tickets, projects, docs |
+| Linear | All | Tickets, projects, docs |
 | Slack | All | Search, post, summarise |
-| Atlassian | Producers | Jira, Confluence |
+| Atlassian | All | Jira |
 | claude-in-chrome | Frontend | Browser test, console logs |
 | Playwright | Frontend | E2E test automation |
 
 **Browser tools, pick one:**
 
-- **Playwright**: much faster (headless, parallel). Use for repeatable test flows.
+- **Playwright**: fast (headless, parallel). Use for repeatable test flows.
+- **agent-browser**: alternative to Playwright, often faster. Use for general automation.
 - **claude-in-chrome**: drives *your real Chrome* with your sessions/cookies. Use when you need authenticated state, extensions, or real DevTools console.

@@ -11,11 +11,11 @@ docs:
 
 ## Memory system
 
-> Cogapp convention layered on top of Claude Code's auto-memory feature. Vanilla Claude just has CLAUDE.md files.
+> Native Claude Code feature. Auto-memory is built in (on by default), separate from `CLAUDE.md`.
 
 Persistent file-based memory at `~/.claude/projects/<proj>/memory/`.
 
-Four types:
+The four-type split below is a convention you impose via your global `CLAUDE.md`, not a built-in:
 
 - **user**: who you are, role, preferences
 - **feedback**: corrections + confirmations

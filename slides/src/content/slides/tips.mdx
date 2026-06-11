@@ -5,13 +5,34 @@ bg: blue
 docs:
   - label: Best practices
     href: https://code.claude.com/docs/en/best-practices
+  - label: Interactive mode
+    href: https://code.claude.com/docs/en/interactive-mode
 ---
+
+import TwoCol from "../../components/TwoCol.astro";
 
 ## Tips
 
-1. **Be specific**: vague in, vague out
-2. **Give context**: files, errors, expectations
-3. **Iterate**: say what's wrong; don't restart
-4. **`/clear` between tasks**
-5. **Read what it writes**
-6. **Start small**: bug fix before new feature
+<TwoCol>
+<div>
+
+**Habits**
+
+1. **Be specific**: give files, errors, expectations
+2. **Iterate**: say what's wrong; don't restart
+3. **Read what it writes**
+4. **Start small**: bug fix before new feature
+5. **Unsure it can do a thing? Ask it**
+
+</div>
+<div>
+
+**Ergonomics**
+
+- **Paste images**: broken UI, design comps, error dialogs
+- **Escape** interrupts; **double Escape** edits an earlier message
+- **`@file`**: mention files/folders directly
+- **`! command`**: run shell yourself, output lands in conversation
+
+</div>
+</TwoCol>

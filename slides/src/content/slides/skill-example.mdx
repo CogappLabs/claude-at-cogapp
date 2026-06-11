@@ -39,7 +39,6 @@ description: >
   linting, formatting, type checking.
   Triggers on "run linters", "type
   check", "format code".
-user_invocable: true
 ---
 
 ## Detection
@@ -71,7 +70,7 @@ Report: project type, commands, failures.
 
 - User types `/lint-check` (manual), OR
 - Claude matches `description` to user's request ("run linters")
-- Frontmatter `user_invocable: true` = shows in `/` menu
+- Shows in `/` menu by default; set `user-invocable: false` to hide it
 - Body is the playbook Claude follows
 
 </div>

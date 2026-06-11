@@ -14,7 +14,7 @@ Plugins for Claude. Connect external tools: databases, Linear, Slack.
 Add the Linear server (one line):
 
 ```shell
-claude mcp add --transport http linear https://mcp.linear.com/mcp
+claude mcp add --transport http linear https://mcp.linear.app/mcp
 ```
 
 Then ask in plain English:
@@ -22,3 +22,5 @@ Then ask in plain English:
 > Find my in-progress Linear tickets and summarise what's left.
 
 Claude calls the server, reads live tickets. Configured per-project or globally.
+
+Note: this `claude mcp add` syntax is the Claude Code CLI. Claude Desktop adds MCP servers through its settings UI / config file instead.
